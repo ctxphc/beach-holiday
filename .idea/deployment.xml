@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData">
+  <component name="PublishConfigData" uploadOnCheckin="47017087-1d2b-4473-af74-0e9c8f095671">
     <serverData>
       <paths name="Beach Holiday Theme Server">
         <serverdata>
@@ -53,5 +53,6 @@
         </serverdata>
       </paths>
     </serverData>
+    <option name="myUploadOnCheckinName" value="New Beach Holiday Theme Server" />
   </component>
 </project>
