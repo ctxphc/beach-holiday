@@ -1,0 +1,23 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <option name="myLocal" value="true" />
+    <inspection_tool class="PhpCSValidationInspection" enabled="false" level="WEAK WARNING" enabled_by_default="false">
+      <option name="CODING_STANDARD" value="Custom" />
+      <option name="CUSTOM_RULESET_PATH" value="/vagrant/wp_codesniffer/WordPress-Coding-Standards-develop" />
+      <option name="SHOW_SNIFF_NAMES" value="true" />
+    </inspection_tool>
+    <inspection_tool class="PhpUndefinedFieldInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="NOTIFY_ACCESS_VIA_MAGIC_METHOD" value="false" />
+      <option name="NOTIFY_DYNAMIC_DECLARATION" value="false" />
+    </inspection_tool>
+    <inspection_tool class="PhpUndefinedVariableInspection" enabled="false" level="WARNING" enabled_by_default="true">
+      <scope name="Project Files" level="WEAK WARNING" enabled="true">
+        <option name="ENABLE_IN_FILE_SCOPE" value="false" />
+        <option name="REPORT_CAN_BE_UNDEFINED" value="false" />
+      </scope>
+      <option name="ENABLE_IN_FILE_SCOPE" value="false" />
+      <option name="REPORT_CAN_BE_UNDEFINED" value="false" />
+    </inspection_tool>
+  </profile>
+</component>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="47017087-1d2b-4473-af74-0e9c8f095671" name="New Beach Holiday Theme Server" url="http://ctxphc.com">
+        <fileTransfer mountedRoot="E:\Projects\ctxphc-beach-holiday\themes\beach-holiday" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

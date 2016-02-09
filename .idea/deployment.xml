@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData">
+    <serverData>
+      <paths name="Beach Holiday Theme Server">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="CTXPHC_Production_Server">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Cen Tex Sound Deploy">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Club_Membership_Plugin Server">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="KaptKaos Prod">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="New Beach Holiday Theme Server">
+        <serverdata>
+          <mappings>
+            <mapping deploy="beach-holiday/" local="$PROJECT_DIR$" web="/var/ww/ctxphc.com/public_html/wp-content/beach-holiday" />
+            <mapping deploy="/var/ww/ctxphc.com/public_html/wp-content/plugins" local="$PROJECT_DIR$/../../plugins" web="/var/ww/ctxphc.com/public_html/wp-content/plugins" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Pirate Ball Reg Vagrant Server">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
