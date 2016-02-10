@@ -113,6 +113,11 @@ add_action( 'wp_enqueue_scripts', 'reg_custom_scripts_and_styles' );
 
 add_filter( 'wpmem_admin_style_list', 'kaos_styles' );
 
+/**
+ * @param $list
+ *
+ * @return array
+ */
 function kaos_styles( $list ) {
 	/**
 	 * Create an array for the stylesheets you want to add.
@@ -1513,28 +1518,32 @@ function kaos_populate_gf_field( $value, $field, $name ) {
 	return isset( $values[ $name ] ) ? $values[ $name ] : $value;
 }
 
+
+/***********************************
+ *  Database Cleanup
+ **********************************/
 add_action( 'wp_footer', 'kaos_database_cleanup' );
 function kaos_database_cleanup() {
 
 	$meta_keys_array[ 'member' ] = $member_meta_keys = array(
-		'm_type'  => 'membership_type',
-		'rel'     => 'relationship_id',
-		'phone'   => 'phone',
-		'email'   => 'user_email',
-		'occu'    => 'occupation',
-		'addr1'   => 'addr1',
-		'addr2'   => 'addr2',
-		'city'    => 'city',
-		'state'   => 'state',
-		'zip'     => 'zip',
-		'status'  => 'status',
-		'share'   => 'share',
-		'contact' => 'contact',
-		'hatch'   => 'hatch_date',
-		'init'    => 'initiated_date',
-		'tag'     => 'tag_date',
-		'login'   => 'user_login',
-		'id'      => 'wp_user_id',
+		'membership_type',
+		'relationship_id',
+		'phone',
+		'user_email',
+		'occupation',
+		'addr1',
+		'addr2',
+		'city',
+		'state',
+		'zip',
+		'status',
+		'share',
+		'contact',
+		'hatch_date',
+		'initiated_date',
+		'tag_date',
+		'user_login',
+		'wp_user_id',
 	);
 
 	$meta_keys_array[ 'spouse' ] = $spouse_meta_keys = array(
@@ -1597,7 +1606,6 @@ function kaos_database_cleanup() {
 		'membership_id',
 		'memb_type',
 		'user_memb_type',
-		'membership_type',
 		'cm_membership_type',
 		'mb_membership_type',
 		'relationship',
@@ -1612,12 +1620,12 @@ function kaos_database_cleanup() {
 		'fam_3_relationship_id',
 		'fam_4_relationship_id',
 		'mb_relationship_id',
-		'phone',
+		'cm_phone',
 		'user_phone',
 		'dbem_phone',
 		//'sp_phone',
 		'fam_1_phone',
-		'email',
+		'cm_email',
 		'mb_mb_email',
 		'mb_email',
 		'c1_email',
@@ -1628,25 +1636,28 @@ function kaos_database_cleanup() {
 		'fam_2_email',
 		'fam_3_email',
 		'fam_4_email',
-		'sp_email',
+		//'sp_email',
 		'mb_occupation',
+		'cm_occupation',
 		'user_occup',
 		'user_addr',
 		'address',
 		'dbem_address',
 		'dbem_address_2',
 		'mb_addr1',
+		'cm_addr1',
 		'mb_addr2',
 		'dbem_city',
 		'mb_city',
+		'cm_city',
 		'user_city',
 		'dbem_state',
-		'state',
+		'cm_state',
 		'user_state',
 		'dbem_zip',
 		'mb_zip',
 		'user_zip',
-		'zip',
+		'cm_zip',
 		'mb_status_id',
 		'status_id',
 		'user_share',
