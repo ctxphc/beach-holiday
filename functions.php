@@ -1150,7 +1150,10 @@ function load_new_form_fields( $curr_memb, $spouse_data, $child_data ) {
 //Used for testing only
 if ( $debug ) {
 	add_filter( 'gform_pre_render_3', 'walk_through_form_fields' );
+	add_action( 'gform_after_submission', 'get_current_entry_data', 10, 2 );
 }
+
+add_filter('ws_plugin__s2member_lock_roles_caps', '__return_true');
 
 function walk_through_form_fields( $form ) {
 
@@ -1179,6 +1182,35 @@ function walk_through_form_fields( $form ) {
 	}
 
 	return $form;
+}
+
+function get_current_entry_data( $form ){
+	if ( $submit = 'registration' ) {
+		$form_id = 1;
+	} else {
+		$form_id = 5;
+	}
+
+
+	//Get all entries for registration or renewal forms
+	$entries = GFAPI::get_entries( $form_id );
+
+	//TODO: get the most recent entry_id
+	foreach ( $entries as $entry ){
+
+	}
+	//Get the most recent entry
+	$entry = GFAPI::get_entry( $entry_id );
+
+	//get all entry data
+	$field_data = array(
+		$date_created => rgar( $entry, 'date_created' ), // returns the entry date
+		$field_1      => rgar( $entry, '1' ),    // returns the value associated with field 1
+		$field_2      => rgar( $entry, '1.3' ),  // returns the value associated with the first name portion of a simple name field 1
+		$field_3      => rgar( $entry, '1.6' ),  // returns the value associated with the last name portion of a simple name field 1
+		$field_4      => rgar( $entry, '2.4' ),  // returns the value associated with the state input for the address field 2
+	);
+
 }
 
 function kaos_get_meta_names( $form ) {
@@ -1494,7 +1526,7 @@ function kaos_get_renewal_form_fields() {
 	return $fields;
 }
 
-add_filter( 'gform_field_value', 'kaos_populate_gf_field', 10, 3 );
+//add_filter( 'gform_field_value', 'kaos_populate_gf_field', 10, 3 );
 
 function kaos_populate_gf_field( $value, $field, $name ) {
 	global $user_error_type;
@@ -1522,10 +1554,13 @@ function kaos_populate_gf_field( $value, $field, $name ) {
 /***********************************
  *  Database Cleanup
  **********************************/
-add_action( 'wp_footer', 'kaos_database_cleanup' );
+//add_action( 'wp_footer', 'kaos_database_cleanup' );
 function kaos_database_cleanup() {
+	global $user_error_type;
 
 	$meta_keys_array[ 'member' ] = $member_meta_keys = array(
+		'first_name',
+		'last_name',
 		'membership_type',
 		'relationship_id',
 		'phone',
@@ -1549,65 +1584,63 @@ function kaos_database_cleanup() {
 	$meta_keys_array[ 'spouse' ] = $spouse_meta_keys = array(
 		'sp_first_name',
 		'sp_last_name',
+		'sp_email',
 		'sp_phone',
 		'sp_birthdate',
 		'sp_relationship_id',
 		'sp_wp_user_id',
-		'user_email',
-		'user_login',
 	);
 
 	$meta_keys_array[ 'child_1' ] = $c1_meta_keys = array(
 		'c1_first_name',
 		'c1_last_name',
+		'c1_email',
 		'c1_phone',
 		'c1_birthdate',
 		'c1_relationship_id',
 		'c1_wp_user_id',
-		'user_email',
-		'user_login',
 	);
 
 	$meta_keys_array[ 'child_2' ] = $c2_meta_keys = array(
 		'c2_first_name',
 		'c2_last_name',
+		'c2_email',
 		'c2_phone',
 		'c2_birthdate',
 		'c2_relationship_id',
 		'c2_wp_user_id',
-		'user_email',
-		'user_login',
 	);
 
 	$meta_keys_array[ 'child_3' ] = $c3_meta_keys = array(
 		'c3_first_name',
 		'c3_last_name',
+		'c3_email',
 		'c3_phone',
 		'c3_birthdate',
 		'c3_relationship_id',
 		'c3_wp_user_id',
-		'user_email',
-		'user_login',
 	);
 
 	$meta_keys_array[ 'child_4' ] = $c4_meta_keys = array(
 		'c4_first_name',
 		'c4_last_name',
+		'c4_email',
 		'c4_phone',
 		'c4_birthdate',
 		'c4_relationship_id',
 		'c4_wp_user_id',
-		'user_email',
-		'user_login',
 	);
 
-	$cleanup_meta_fields = array(
+	$cleanup_meta_fields[ 'membership' ] = array(
 		'membership',
 		'membership_id',
 		'memb_type',
 		'user_memb_type',
 		'cm_membership_type',
 		'mb_membership_type',
+	);
+
+	$cleanup_meta_fields[ 'relationship' ] = array(
 		'relationship',
 		'cm_relationship',
 		'sp_relationship',
@@ -1620,11 +1653,16 @@ function kaos_database_cleanup() {
 		'fam_3_relationship_id',
 		'fam_4_relationship_id',
 		'mb_relationship_id',
+	);
+
+	$cleanup_meta_fields[ 'phone' ] = array(
 		'cm_phone',
 		'user_phone',
 		'dbem_phone',
-		//'sp_phone',
 		'fam_1_phone',
+	);
+
+	$cleanup_meta_fields[ 'email' ] = array(
 		'cm_email',
 		'mb_mb_email',
 		'mb_email',
@@ -1636,10 +1674,15 @@ function kaos_database_cleanup() {
 		'fam_2_email',
 		'fam_3_email',
 		'fam_4_email',
-		//'sp_email',
+	);
+
+	$cleanup_meta_fields[ 'occupation' ] = array(
 		'mb_occupation',
 		'cm_occupation',
 		'user_occup',
+	);
+
+	$cleanup_meta_fields[ 'address' ] = array(
 		'user_addr',
 		'address',
 		'dbem_address',
@@ -1647,21 +1690,29 @@ function kaos_database_cleanup() {
 		'mb_addr1',
 		'cm_addr1',
 		'mb_addr2',
+	);
+
+	$cleanup_meta_fields[ 'city' ] = array(
 		'dbem_city',
 		'mb_city',
 		'cm_city',
 		'user_city',
+	);
+
+	$cleanup_meta_fields[ 'state' ] = array(
 		'dbem_state',
 		'cm_state',
 		'user_state',
+	);
+
+	$cleanup_meta_fields[ 'zip' ] = array(
 		'dbem_zip',
 		'mb_zip',
 		'user_zip',
 		'cm_zip',
-		'mb_status_id',
-		'status_id',
-		'user_share',
-		'user_contact',
+	);
+
+	$cleanup_meta_fields[ 'dates' ] = array(
 		'fam_1_hatch_date',
 		'fam_2_hatch_date',
 		'fam_3_hatch_date',
@@ -1675,8 +1726,21 @@ function kaos_database_cleanup() {
 		'fam_3_tab_date',
 		'sp_tag_date',
 		'user_tag',
+	);
+
+	$cleanup_meta_fields[ 'misc_fields' ] = array(
+		'mb_status_id',
+		'status_id',
+		'user_share',
+		'user_contact',
+	);
+
+	$cleanup_meta_fields[ 'usernames' ] = array(
 		'fam_1_username',
 		'user_login',
+	);
+
+	$cleanup_meta_fields[ 'user_ids' ] = array(
 		'fam_1_wp_user_id',
 		'fam_2_wp_user_id',
 		'fam_3_wp_user_id',
@@ -1697,8 +1761,13 @@ function kaos_database_cleanup() {
 
 	foreach ( $meta_keys_array as $member_meta_keys ) {
 		$member_meta_keys_count = count( $member_meta_keys );
-		foreach ( $cleanup_meta_fields as $cleanup_meta_field ) {
-			kaos_migrate_data( $cleanup_meta_field, $member_meta_keys, $member_meta_keys_count, $delete_fields );
+		foreach ( $cleanup_meta_fields as $cleanup_meta_field_group ) {
+			foreach ( $cleanup_meta_field_group as $cleanup_meta_field ) {
+				$emessage = 'cleanup_meta_field is ' . $cleanup_meta_field;
+				user_error( $emessage, $user_error_type[ 'warning' ] );
+
+				kaos_migrate_data( $cleanup_meta_field, $member_meta_keys, $member_meta_keys_count, $delete_fields );
+			}
 		}
 	}
 }
@@ -1718,6 +1787,7 @@ function kaos_migrate_data( $user_meta_key, $member_meta_keys, $member_meta_keys
 	if ( ! empty( $fields_to_delete ) ) {
 		//TODO: create process to delete these fields as they will never be used again.
 	}
+
 
 	$fdelete       = false;
 	$get_user_args = array(
@@ -1752,6 +1822,7 @@ function kaos_migrate_data( $user_meta_key, $member_meta_keys, $member_meta_keys
 					$validate_args[ 'member_value' ]    = $member->$member_meta_keys[ 'm_type' ];
 					$fdelete                            = kaos_cleanup_membership( $validate_args );
 					break;
+				/*
 				case 'relationship':
 				case 'cm_relationship':
 				case 'relationship_id':
@@ -1861,7 +1932,6 @@ function kaos_migrate_data( $user_meta_key, $member_meta_keys, $member_meta_keys
 					$validate_args[ 'member_value' ]    = $member->$member_meta_keys[ 'cont' ];
 					$fdelete                            = kaos_cleanup_contact( $validate_args );
 					break;
-				/** @noinspection PhpMissingBreakStatementInspection */
 				case 'user_hatch_date':
 					$validate_args[ 'proc_memb' ] = true;
 				case 'fam_1_hatch_date':
@@ -1892,6 +1962,7 @@ function kaos_migrate_data( $user_meta_key, $member_meta_keys, $member_meta_keys
 					$validate_args[ 'member_value' ]    = $member->$member_meta_keys[ 'login' ];
 					$fdelete                            = kaos_cleanup_usernames( $validate_args );
 					break;
+				*/
 				default:
 					$fdelete = false;
 			}
