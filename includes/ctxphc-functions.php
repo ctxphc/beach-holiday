@@ -63,7 +63,7 @@ function ctxphc_login_redirect( $redirect_to, $request, $user ) {
 function HideMail( $atts, $content = null ) {
 	if ( ! is_email( $content ) ) {
 		$message = "Some kind of issue wiht HideMail function! Check it out.T";
-		debug_log_message( $message );
+		//debug_log_message( $message );
 	}
 
 	return '<a href="mailto:' . antispambot( $content ) . '">' . antispambot( $content ) . '</a>';

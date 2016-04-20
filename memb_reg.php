@@ -32,56 +32,7 @@ get_header(); ?>
 				<div class="entry">
 					<?php the_content( 'more...' ); ?>
 					<div class="clear"></div>
-					<div class="spacer"></div>
-					<div>
-						<h2 class="ctxphc_center">Central Texas Parrot Head Club</h2>
-					</div>
-					<p>So, you've decided you want to join in our mission to Party with a Purpose,
-						have PHun and help the community? If so, <img class="alignright wp-image-7" title="membership-image"
-						                                              src="<?php echo get_template_directory_uri();
-						                                              ?>/includes/Images/membership-image.jpg"
-						                                              alt="ctxphc membership image"/>you
-						can complete the application below and make a payment using PayPal or print
-						out the application and mail a check to:</p>
-
-					<p>
-						Central Texas Parrot Head Club<br/>
-						c/o Membership Director<br/>
-						P.O. Box 82655<br/>
-						Austin, TX 78708
-					</p>
-
-					<p>Membership entitles you to attend our numerous monthly events; an official club badge; access to the monthly CTXPHC newsletter and ParrotHead-related electronic bulletins. The newsletter and bulletins keep you up-to-date regarding local, regional and statewide PHlockings (which you would be eligible to attend); community events; special discounts; concert news; VIP passes and much more!</p>
-
-					<p>If you have any questions, contact our <a
-							href="mailto:<?php echo antispambot( 'membership@ctxphc.com' ); ?>">Membership
-							Director</a>.</p>
-
-					<p>If you are ready to join in the PHun, scroll down and fill out our registration form!</p>
-
-					<p><strong>NOTE: If this is a renewal, login to your profile and click on the
-							"Renew Membership" button. If you don't know how to login, send email to
-							our <a href="mailto:<?php echo antispambot( 'support@ctxphc.com' ); ?>">Support
-								Staff</a>.</strong></p>
-
-					<div class="spacer"></div>
-
-					<?php gravity_form( 1, false, false, false, '', false ); ?>
-
-					<div class="reg_form_row" id="mem_reg_types">
-						<h4>Membership Types:</h4>
-						<ul id="memb_reg_list">
-							<li>Individual -
-								$<?php echo $memb_costs[ 1 ]->cost; ?></li>
-							<li>Individual + Child -
-								$<?php echo $memb_costs[ 2 ]->cost; ?></li>
-							<li>Couples -
-								$<?php echo $memb_costs[ 3 ]->cost; ?></li>
-							<li>Household -
-								$<?php echo $memb_costs[ 4 ]->cost; ?></li>
-						</ul>
-					</div>
-
+					
 					<form class="memb_reg_form" id="regForm" name="regForm" method="post"
 					      action="<?php bloginfo( 'url' ); ?>/registration-review/">
 						<input type="hidden" name="mb_relationship" value=1 />

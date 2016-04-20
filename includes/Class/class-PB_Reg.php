@@ -16,9 +16,9 @@ class PB_Reg {
 		'pb_attend_shirt_count' => 1,
 		'pb_attend_club_count'  => 1,
 		'pb_shirt_sizes'        => array(),
-		'pb_cost'               => 70.00,
-		'pb_early_cost'         => 60.00,
-		'pb_memb_cost'          => 50.00,
+		'pb_cost'               => 65.00,
+		'pb_early_cost'         => 55.00,
+		'pb_memb_cost'          => 45.00,
 		'pb_reg_cost'           => 0,
 		'PB_reg_total'          => 0,
 		'item_name'             => '',
@@ -26,7 +26,6 @@ class PB_Reg {
 		'tAmount'               => '',
 		'quantity'              => 1,
 		'states'                => array(),
-
 	);
 
 	public function __construct( $args ) {
@@ -132,7 +131,7 @@ class PB_Reg {
 	}
 
 	public
-	function  render_pb_review_form(
+	function render_pb_review_form(
 		$pb_reg_user_id
 	) {
 		global $wpdb;
@@ -140,7 +139,7 @@ class PB_Reg {
 		$pb_reg_data = $wpdb->get_row( "SELECT * FROM ctxphc_pb_reg WHERE pbRegID = $pb_reg_user_id" );
 
 
-		if ( strlen( $pb_reg_data->attendee_2 ) > 1  ) {
+		if ( strlen( $pb_reg_data->attendee_2 ) > 1 ) {
 			$pb_display_attendee_2_class = 'pb_display';
 		} else {
 			$pb_display_attendee_2_class = 'pb_hidden';
@@ -191,7 +190,7 @@ class PB_Reg {
 							       name="pb_fname"
 							       value="<?php echo $pb_reg_data->first_name; ?>"
 							       required
-								/>
+							/>
 							<label class="pb_lbl_right"
 							       id="lbl_pb_lname"
 							       for="pb_lname"> Last Name:
@@ -203,7 +202,7 @@ class PB_Reg {
 							       name="pb_lname"
 							       value="<?php echo $pb_reg_data->last_name; ?>"
 							       required
-								/>
+							/>
 						</div>
 
 						<div class="pb_rows" id="div_pb_email">
@@ -218,7 +217,7 @@ class PB_Reg {
 							       type="text"
 							       value="<?php echo $pb_reg_data->email; ?>"
 							       required
-								/>
+							/>
 
 							<label class="pb_lbl_right"
 							       id="lbl_pb_email_verify"
@@ -231,7 +230,7 @@ class PB_Reg {
 							       type="text"
 							       value="<?php echo $pb_reg_data->email; ?>"
 							       required
-								/>
+							/>
 						</div>
 
 						<div class="pb_rows" id="div_pb_phone">
@@ -246,7 +245,7 @@ class PB_Reg {
 							       type="tel"
 							       value="<?php echo formatPhoneNumber( $pb_reg_data->phone ); ?>"
 							       required
-								/>
+							/>
 
 							<label class="pb_lbl_right"
 							       id="lbl_pb_club"
@@ -259,7 +258,7 @@ class PB_Reg {
 							       type="text"
 							       value="<?php echo $pb_reg_data->club_aff; ?>"
 							       required
-								/>
+							/>
 						</div>
 
 						<div class="pb_rows" id="pb_shirt">
@@ -291,7 +290,7 @@ class PB_Reg {
 							echo 'checked';
 						} ?>
 						       required
-							/>
+						/>
 						<label class="pb_attendeeCount"
 						       for="pb_attendee_count_2">2 Attendees
 							$<?php echo $this->pb_reg_cost * 2; ?>
@@ -306,7 +305,7 @@ class PB_Reg {
 							echo 'checked';
 						} ?>
 						       required
-							/>
+						/>
 						<label class="pb_attendeeCount"
 						       for="pb_attendee_count_3">3 Attendees
 							$<?php echo $this->pb_reg_cost * 3; ?>
@@ -320,7 +319,7 @@ class PB_Reg {
 						       value="4" <?php if ( $pb_reg_data->quantity == 4 ) {
 							echo 'checked';
 						} ?>
-							/>
+						/>
 						<label class="pb_attendeeCount"
 						       for="pb_attendee_count_4">4 Attendees:
 							$<?php echo $this->pb_reg_cost * 4; ?>
@@ -342,7 +341,7 @@ class PB_Reg {
 							       name="pb_attendee_fname_2"
 							       type="text"
 							       value="<?php echo $names[ 0 ]; ?>"
-								/>
+							/>
 
 							<label class="pb_lbl_right"
 							       id="pb_lbl_attendee_lname_2"
@@ -354,7 +353,7 @@ class PB_Reg {
 							       name="pb_attendee_lname_2"
 							       type="text"
 							       value="<?php echo $names[ 1 ]; ?>"
-								/>
+							/>
 						</div>
 						<div class="pb_rows">
 							<label class="pb_lbl_left"
@@ -430,7 +429,7 @@ class PB_Reg {
 							       name="pb_attendee_club_3"
 							       type="text"
 							       value="<?php echo $pb_reg_data->attendee_club_3; ?>"
-								/>
+							/>
 						</div>
 					</div>
 
@@ -449,7 +448,7 @@ class PB_Reg {
 							       id="pb_attendee_fname_4"
 							       name="pb_attendee_fname_4"
 							       type="text"
-								/>
+							/>
 
 							<label class="pb_lbl_right"
 							       id="pb_attendee_lname_4"
@@ -461,7 +460,7 @@ class PB_Reg {
 							       id="pb_attendee_lname_4"
 							       name="pb_attendee_lname_4"
 							       type="text"
-								/>
+							/>
 						</div>
 						<div class="pb_rows">
 							<label class="pb_lbl_left"
@@ -485,7 +484,7 @@ class PB_Reg {
 							       name="pb_attendee_club_4"
 							       type="text"
 							       value="<?php echo $pb_reg_data->attendee_club_4; ?>"
-								/>
+							/>
 						</div>
 					</div>
 				</fieldset>
@@ -499,7 +498,7 @@ class PB_Reg {
 			</form>
 
 			<!-- Pirate's Ball CTXPHC Members Only Registration PayPal Button -->
-			<form class="<?php echo $this->pb_reg_classes['pb_memb_class']; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_memb_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="VDW65WDHYXXYJ">
@@ -514,7 +513,7 @@ class PB_Reg {
 
 
 			<!--  Pirate's Ball Early Registration PayPal Button -->
-			<form class="<?php echo $this->pb_reg_classes['pb_early_class']; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_early_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="4PH2DEAAH4LD8">
@@ -529,7 +528,7 @@ class PB_Reg {
 
 			<!-- Pirate's Ball Late Registration PayPal Button -->
 
-			<form class="<?php echo $this->pb_reg_classes['pb_late_class']; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_late_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="DU9MPK4H5L3ZQ">
@@ -543,7 +542,7 @@ class PB_Reg {
 
 			<!-- Pirate's Ball Private Registration PayPal Button -->
 
-			<form class="<?php echo $this->pb_reg_classes['pb_priv_class']; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_priv_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="5YCZ8AV3GT83S">
@@ -585,7 +584,7 @@ class PB_Reg {
 			<p>We look forward to seeing you and celebrating another wonderful CTXPHC Pirate's Ball!
 		</div>
 
-		<div class="<?php echo $this->pb_reg_classes['pb_memb_class']; ?>" id="memb_reg_cost">
+		<div class="<?php echo $this->pb_reg_classes[ 'pb_memb_class' ]; ?>" id="memb_reg_cost">
 			<h4>CTXPHC Members only early registration cost: $<?php echo $this->pb_memb_cost; ?> per person</h4>
 			After June 30th Early Registration cost: $<?php echo $this->pb_early_cost; ?> per person.
 			After July 31st Registration cost: $<?php echo $this->pb_cost; ?> pre person.
@@ -596,7 +595,7 @@ class PB_Reg {
 				</a>
 			</p>
 		</div>
-		<div class="<?php echo $this->pb_reg_classes['pb_early_class']; ?>" id="early_reg_cost">
+		<div class="<?php echo $this->pb_reg_classes[ 'pb_early_class' ]; ?>" id="early_reg_cost">
 			<h4>CTXPHC Early registration cost: $<?php echo $this->pb_early_cost; ?> per person</h4>
 			Registration is $<?php echo $this->pb_cost; ?> after July 31 and at the door.
 
@@ -606,7 +605,7 @@ class PB_Reg {
 				</a>
 			</p>
 		</div>
-		<div class="<?php echo $this->pb_reg_classes['pb_late_class']; ?>" id="late_reg_cost">
+		<div class="<?php echo $this->pb_reg_classes[ 'pb_late_class' ]; ?>" id="late_reg_cost">
 			<h4>CTXPHC Registration cost: $<?php echo $this->pb_cost; ?> per person</h4>
 
 			<p class="pb_center">
@@ -639,7 +638,7 @@ class PB_Reg {
 						       id="pb_fname"
 						       type="text"
 						       name="pb_fname"
-							/>
+						/>
 
 						<label id="lbl_pb_lname"
 						       class="pb_lbl_right"
@@ -650,7 +649,7 @@ class PB_Reg {
 						       id="pb_lname"
 						       type="text"
 						       name="pb_lname"
-							/>
+						/>
 					</div>
 
 					<div class="pb_rows" id="div_pb_email">
@@ -673,7 +672,7 @@ class PB_Reg {
 						       id="pb_email_verify"
 						       name="pb_email_verify"
 						       type="text"
-							/>
+						/>
 					</div>
 
 					<div class="pb_rows" id="div_pb_phone_affiliation">
@@ -686,7 +685,7 @@ class PB_Reg {
 						       id="pb_phone"
 						       name="pb_phone"
 						       type="tel"
-							/>
+						/>
 
 						<label class="pb_lbl_right"
 						       id="lbl_pb_club"
@@ -697,7 +696,7 @@ class PB_Reg {
 						       id="pb_club"
 						       name="pb_club"
 						       type="text"
-							/>
+						/>
 					</div>
 					<div class="pb_rows">
 						<label class="pb__shirt"
@@ -761,7 +760,7 @@ class PB_Reg {
 						       id="pb_attendee_fname_2"
 						       name="pb_attendee_fname_2"
 						       type="text"
-							/>
+						/>
 
 						<label class="pb_lbl_right"
 						       id="pb_lbl_attendee_lname_2"
@@ -772,7 +771,7 @@ class PB_Reg {
 						       id="pb_attendee_lname_2"
 						       name="pb_attendee_lname_2"
 						       type="text"
-							/>
+						/>
 					</div>
 
 					<div class="pb_rows">
@@ -795,7 +794,7 @@ class PB_Reg {
 						       id="pb_attendee_club_2"
 						       name="pb_attendee_club_2"
 						       type="text"
-							/>
+						/>
 					</div>
 				</div>
 
@@ -810,7 +809,7 @@ class PB_Reg {
 						       id="pb_attendee_fname_3"
 						       name="pb_attendee_fname_3"
 						       type="text"
-							/>
+						/>
 
 						<label class="pb_lbl_right"
 						       id="pb_lbl_attendee_lname_3"
@@ -821,7 +820,7 @@ class PB_Reg {
 						       id="pb_attendee_lname_3"
 						       name="pb_attendee_lname_3"
 						       type="text"
-							/>
+						/>
 					</div>
 
 					<div class="pb_rows">
@@ -844,7 +843,7 @@ class PB_Reg {
 						       id="pb_attendee_club_3"
 						       name="pb_attendee_club_3"
 						       type="text"
-							/>
+						/>
 					</div>
 				</div>
 
@@ -859,7 +858,7 @@ class PB_Reg {
 						       id="pb_attendee_fname_4"
 						       name="pb_attendee_fname_4"
 						       type="text"
-							/>
+						/>
 						<label class="pb_lbl_right"
 						       id="pb_lbl_attendee_lname_4"
 						       for="pb_attendee_lname_4">Last Name:
@@ -869,7 +868,7 @@ class PB_Reg {
 						       id="pb_attendee_lname_4"
 						       name="pb_attendee_lname_4"
 						       type="text"
-							/>
+						/>
 					</div>
 
 					<div class="pb_rows">
@@ -893,7 +892,7 @@ class PB_Reg {
 						       id="pb_attendee_club_4"
 						       name="pb_attendee_club_4"
 						       type="text"
-							/>
+						/>
 					</div>
 				</div>
 			</fieldset>

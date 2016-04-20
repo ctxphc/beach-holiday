@@ -15,10 +15,11 @@ if ( ! class_exists( 'PB_Reg' ) ) {
 $args             = array();
 $args[ 'states' ] = get_states_array();
 
-$pb_cost       = 70.00;
-$pb_early_cost = 60.00;
-$pb_memb_cost  = 50.00;
-$pb_priv_cost  = 50.00;
+$pb_cost       = 65.00;
+$pb_early_cost = 55.00;
+$pb_memb_cost  = 45.00;
+$pb_priv_cost  = 45.00;
+$pb_cruse_cost = 40.00;
 
 
 $args[ 'pb_today' ]    = $pb_today = new DateTime();
@@ -73,48 +74,6 @@ get_header(); ?>
 	//-->
 </script>
 
-<div id="content">
-	<div class="spacer"></div>
-	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-			<div id="post_title" class="post_title">
-				<h1><a href="<?php the_permalink() ?>" rel="bookmark"
-				       title="Permanent Link to <?php the_title_attribute(); ?>"><?php the_title(); ?></a></h1>
-			</div>
-			<!-- Post_title -->
-
-			<div class="clear"></div>
-
-			<div class="entry">
-				<?php the_content( 'more...' ); ?>
-				<div class="clear"></div>
-
-				<div class="spacer"></div>
-
-				<div class="pb_header">
-					<h2 class="pieces_of_eight">CTXPHC 2015 Pirate's Ball</h2>
-
-					<h2 class="pb_center <?php echo $pb_priv_class; ?>" id="memb_reg">Private Registration</h2>
-				</div>
-
-				<div class="spacer"></div>
-
-				<div>
-					<img id="PB_logo" alt="CTXPHC Pirate's Ball 2015 Logo"
-					     src="http://www.ctxphc.com/wp-content/themes/beach-holiday/includes/Images/Pirates_Ball/2015-Pirates-Ball-Logo.jpg"
-					     width="300">
-				</div>
-				<div class="pb_cost <?php echo $pb_priv_class; ?>" id="memb_reg_cost">
-					<h4 class="pb_center pb_header">CTXPHC Private Registration Cost: $<?php echo $pb_memb_cost; ?> per person</h4>
-				</div>
-				<p class="pb_center pb_details">
-					<a class="pb_details_link" href="https://www.ctxphc.com/pirates-ball-details/">
-						Click here for additional event and hotel information!
-					</a>
-				</p>
-
-
 				<?php
 				if ( isset( $_POST[ 'submit' ] ) ) {
 					$clean_post_data = array_map( 'mysql_real_escape_string', $_POST );
@@ -141,14 +100,3 @@ get_header(); ?>
 					$memb_pb_reg->display_pb_form( $form_type );
 				}
 				?>
-
-			</div>
-			<!-- entry -->
-		</div> <!-- post -->
-		<?php
-	endwhile;
-	endif;
-	?>
-</div> <!-- content -->
-<?php get_sidebar(); ?>
-<?php get_footer(); ?>
