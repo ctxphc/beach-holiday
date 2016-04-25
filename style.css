@@ -491,13 +491,13 @@ img.aligntop {
     background: transparent;
 }
 
-/*	[ Content ] Post                                                */
-<!--
--->
+/*	[ Content ] Post  */
+
 #content .post, #content .page {
     position: relative;
     overflow: hidden;
     background: url('includes/Images/bg_post_btm.jpg') no-repeat bottom center;
+    height: 125px;
     width: 673px;
     margin: 0 0 30px 20px;
     padding: 0 0 5px 0;
@@ -1259,4 +1259,10 @@ ul.gfield_radio#input_1_1 li {
 #ggl_memb_map {
     width: 500px;
     height: 400px;
+}
+
+/*** Event Manger CSS Overriders ***/
+
+#em-attendee-details-9 .em-attendee-details tr{
+    display:none;
 }
