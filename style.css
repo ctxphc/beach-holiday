@@ -237,6 +237,7 @@ img.aligntop {
 #content {
     display: inline;
     overflow: hidden;
+    /* width:674px; */
     padding: 0 4px 0 0;
     margin: 10px 27px 0 0;
     width: 708px;
@@ -490,13 +491,13 @@ img.aligntop {
     background: transparent;
 }
 
-/*	[ Content ] Post  */
-
+/*	[ Content ] Post                                                */
+<!--
+-->
 #content .post, #content .page {
     position: relative;
     overflow: hidden;
     background: url('includes/Images/bg_post_btm.jpg') no-repeat bottom center;
-    height: 125px;
     width: 673px;
     margin: 0 0 30px 20px;
     padding: 0 0 5px 0;
@@ -1260,32 +1261,6 @@ ul.gfield_radio#input_1_1 li {
     height: 400px;
 }
 
-/*** Event Manger CSS Overriders ***/
-
-#em-attendee-details-9 .em-attendee-details tr{
-    display:none;
-}
-
-.single_event_title {
-    position: absolute;
-    left: 270px;
-    top: 5px;
-    width: 520px;
-    height: 25px;
-    font-size: 1.417em;
-    font-weight: bold;
-    color: #9D080D;
-    margin: 10px;
-    padding: 0;
-}
-
-.single_event_title h1 {
-    text-align: center;
-    margin:auto;
-    vertical-align:middle;
-    width: 520px;
-    height: 25px;
-    font-size: 1.417em;
-    font-weight: bold;
-    color: #9D080D;
+span.ctxphc_em_event{
+    font-size: 1.3em;
 }

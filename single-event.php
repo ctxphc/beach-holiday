@@ -1,4 +1,14 @@
-<?php get_header(); ?>
+<?php
+/**
+ * The template for displaying single Event Location pages.
+ *
+ * This is the template that displays a single location page.
+ *
+ * @package Beach-House-Theme
+ * @since Beach-House-Theme 1.0
+ */
+
+get_header(); ?>
 <div id="content">
 	<div class="spacer"></div>
 	<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>

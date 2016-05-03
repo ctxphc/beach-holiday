@@ -2,7 +2,7 @@
 <ul>
     <li><h4>Phlock Access</h4>
 	<ul>
-		<li><a id="side-login-in" href=<?php echo get_site_url() . '/login'; ?>>Renew Here!!</a></li>
+		<li><a id="side-login-in" href=<?php echo get_site_url() . '/login'; ?>>Renew Here!!</a></li>  <!-- is now redirecting to wp-login.php -->
 		<li><a href=<?php echo admin_url(); ?>>BOD Login</a></li>
 	</ul>
     </li>
