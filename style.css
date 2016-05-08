@@ -1136,11 +1136,11 @@ body .gform_wrapper .gform_body .gform_fields .gfield .gfield_label {
     font-size: 1.1em;
 }
 
-.gfield .ginput_container .gfield_date_day label, .gfield .ginput_container .gfield_date_month label, .gfield .ginput_container .gfield_date_year label{
+.gfield .ginput_container .gfield_date_day label, .gfield .ginput_container .gfield_date_month label, .gfield .ginput_container .gfield_date_year label {
     display: none;
 }
 
-.gfield .ginput_container .gfield_date_day, .gfield .ginput_container .gfield_date_month, .gfield .ginput_container .gfield_date_year{
+.gfield .ginput_container .gfield_date_day, .gfield .ginput_container .gfield_date_month, .gfield .ginput_container .gfield_date_year {
     margin-bottom: 1em;
 }
 
@@ -1179,16 +1179,15 @@ ul.gfield_radio#input_1_1 li {
     display: none;
 }
 
-#field_1_5 > label:nth-child(1), #field_1_15 > label:nth-child(1){
+#field_1_5 > label:nth-child(1), #field_1_15 > label:nth-child(1) {
     margin-bottom: 0;
 }
 
-#input_1_5{
+#input_1_5 {
     margin-top: 0;
 }
 
-
-.ctxphc_reg_sec_headers .gfield{
+.ctxphc_reg_sec_headers .gfield {
     font-size: 1.2em;
     padding-top: 15px;
 }
@@ -1245,22 +1244,82 @@ ul.gfield_radio#input_1_1 li {
 .ctxphc_child_email {
 }
 
-
 #menu {
-     position: absolute;
-     list-style: outside none none;
-     top: 2px;
-     right: 10px;
-     height: 20px;
-     margin: 0px;
-     padding: 0px;
- }
+    position: absolute;
+    list-style: outside none none;
+    top: 2px;
+    right: 10px;
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+}
 
 #ggl_memb_map {
     width: 500px;
     height: 400px;
 }
 
-span.ctxphc_em_event{
+.ctxphc_em_event_dates {
     font-size: 1.3em;
+}
+
+.ctxphc_event_locations {
+    font-size: 1.3em;
+}
+
+span.ctxphc_em_event {
+    font-size: 1.3em;
+}
+
+p.ctxphc_em_event {
+    font-size: 1.3em;
+}
+
+table.em-tickets  {
+    width: 60%;
+}
+
+.event p {
+    line-height: 1.5em;
+    margin-bottom: 10px;
+}
+
+.single_event_title h1 {
+    font-size: 1.3em;
+}
+
+.single_event_title p {
+    font-size: 1.3em;
+}
+
+.em-attendee-fields {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    background-color: ghostwhite;
+}
+
+.em-ticket tr {
+    margin-bottom: 1.3em;
+}
+
+.ctxphc_em_events .em-form-required span {
+    font-size: 1.5em;
+    color: red;
+}
+
+#content .em-booking-form label{
+    width: 8em;
+}
+
+td.em-bookings-ticket-table-price {
+    width: 65px;
+}
+
+#content .single_event_title .post_title a, #content .post_title a {
+    left: 11em;
+    position: relative;
+}
+
+.ctxphc_em_cruise_includes {
+
 }
