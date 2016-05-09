@@ -10,22 +10,40 @@ namespace CTXPHC\BeachHoliday\Classes;
 
 
 class PB_Reg {
+
+	var $attendee_count;
+	var $pb_attend_count;
+	var $pb_attend_club_count;
+	var $pb_cost;
+	var $pb_early_cost;
+	var $pb_memb_cost;
+	var $pb_reg_cost;
+	var $pb_reg_total;
+	var $item_name;
+	var $item_num;
+	var $tAmount;
+	var $quantity;
+	var $states;
+
+	var $pb_cruise_cost;
+	var $pb_cruise_count;
+
 	public $defaults = array(
-		'attendee_count'        => 1,
-		'pb_attend_count'       => 1,
-		'pb_attend_shirt_count' => 1,
-		'pb_attend_club_count'  => 1,
-		'pb_shirt_sizes'        => array(),
-		'pb_cost'               => 65.00,
-		'pb_early_cost'         => 55.00,
-		'pb_memb_cost'          => 45.00,
-		'pb_reg_cost'           => 0,
-		'PB_reg_total'          => 0,
-		'item_name'             => '',
-		'item_num'              => '',
-		'tAmount'               => '',
-		'quantity'              => 1,
-		'states'                => array(),
+		'attendee_count'       => 1,
+		'pb_attend_count'      => 1,
+		'pb_attend_club_count' => 1,
+		'pb_cruise_count'      => 0,
+		'pb_cruise_price'      => 40.00,
+		'pb_cost'              => 65.00,
+		'pb_early_cost'        => 55.00,
+		'pb_memb_cost'         => 45.00,
+		'pb_reg_cost'          => 0,
+		'pb_reg_total'         => 0,
+		'item_name'            => '',
+		'item_num'             => '',
+		'tAmount'              => '',
+		'quantity'             => 1,
+		'states'               => array(),
 	);
 
 	public function __construct( $args ) {
@@ -35,32 +53,11 @@ class PB_Reg {
 			$this->$arg_key = $arg_val;
 		}
 
-		$this->pb_shirt_sizes = $this->pb_load_sizes();
+		//$this->pb_shirt_sizes = $this->pb_load_sizes();
 
 		$this->pb_reg_classes = $this->get_pb_reg_classes();
 
 		$this->pb_reg_cost = $this->get_pb_reg_cost();
-	}
-
-	public function pb_load_sizes() {
-		if ( $this->expiry2 < $this->pb_today ) {
-			//@format:off
-			$shirtsizes = array(
-				'XL' => 'X-Large',
-			);
-		} else {
-			$shirtsizes = array(
-				'Size' => ' ',
-				'SM'   => 'Small',
-				'MD'   => 'Medium',
-				'LG'   => 'Large',
-				'XL'   => 'X-Large',
-				'XXL'  => 'XX-Large',
-			);
-			//@format:on
-		}
-
-		return $shirtsizes;
 	}
 
 	private function get_pb_reg_classes() {
@@ -112,6 +109,26 @@ class PB_Reg {
 		return $pb_reg_cost;
 	}
 
+	public function pb_load_sizes() {
+		if ( $this->expiry2 < $this->pb_today ) {
+			//@format:off
+			$shirtsizes = array(
+				'XL' => 'X-Large',
+			);
+		} else {
+			$shirtsizes = array(
+				'Size' => ' ',
+				'SM'   => 'Small',
+				'MD'   => 'Medium',
+				'LG'   => 'Large',
+				'XL'   => 'X-Large',
+				'XXL'  => 'XX-Large',
+			);
+			//@format:on
+		}
+
+		return $shirtsizes;
+	}
 
 	public
 	function display_pb_form(
@@ -160,11 +177,13 @@ class PB_Reg {
 		?>
 
 		<div>
-			<h3>Thank you <?php echo "{$pb_reg_data->first_name}  {$pb_reg_data->last_name}"; ?>,</h3>
+			<h3>Thank you <?php echo "{$pb_reg_data->first_name}  {$pb_reg_data->last_name}"; ?>
+				,</h3>
 
-			<p>Your registration for the 2015 CTXPHC Pirate's Ball is almost complete!</p>
+			<p>Your registration for the 2016 CTXPHC Pirate's Ball is almost complete!</p>
 
-			<p> Please verify your information then pay through PayPal using a credit card of your choice .</p>
+			<p> Please verify your information then pay through PayPal using a credit card of your
+				choice .</p>
 
 			<div class="spacer"></div>
 
@@ -270,7 +289,7 @@ class PB_Reg {
 							        id="pb_t-shirt"
 							        name="pb_shirt_size">
 								<?php $defSel = $pb_reg_data->shirt_size;
-								echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+								//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 							</select>
 						</div>
 					</div>
@@ -326,7 +345,8 @@ class PB_Reg {
 						</label>
 					</div>
 
-					<div class="pb_reg_attendee <?php echo $pb_display_attendee_2_class; ?>" id="pb_attendee_2">
+					<div class="pb_reg_attendee <?php echo $pb_display_attendee_2_class; ?>"
+					     id="pb_attendee_2">
 						<?php if ( isset( $pb_reg_data->attendee_2 ) ) {
 							$names = preg_split( '/\s+/', $pb_reg_data->attendee_2 );
 						} ?>
@@ -364,7 +384,7 @@ class PB_Reg {
 							        id="pb_attendee_shirt_2"
 							        name="pb_attendee_shirt_size_2">
 								<?php $defSel = $pb_reg_data->attendee_shirt_size_2;
-								echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+								//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 							</select>
 
 							<label class="pb_lbl_right attendee_club_lbl"
@@ -379,7 +399,8 @@ class PB_Reg {
 							       value="<?php echo $pb_reg_data->attendee_club_2; ?>"/>
 						</div>
 					</div>
-					<div class="pb_reg_attendee <?php echo $pb_display_attendee_3_class; ?>" id="pb_attendee_3">
+					<div class="pb_reg_attendee <?php echo $pb_display_attendee_3_class; ?>"
+					     id="pb_attendee_3">
 						<?php if ( isset( $pb_reg_data->attendee_3 ) ) {
 							$names = preg_split( '/\s+/', $pb_reg_data->attendee_3 );
 						} ?>
@@ -416,7 +437,7 @@ class PB_Reg {
 							        id="pb_attendee_shirt_3"
 							        name="pb_attendee_shirt_size_3">
 								<?php $defSel = $pb_reg_data->attendee_shirt_size_3;
-								echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+								//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 							</select>
 
 							<label class="pb_lbl_right attendee_club_lbl"
@@ -433,7 +454,8 @@ class PB_Reg {
 						</div>
 					</div>
 
-					<div class="pb_reg_attendee <?php echo $pb_display_attendee_4_class; ?>" id="pb_attendee_4">
+					<div class="pb_reg_attendee <?php echo $pb_display_attendee_4_class; ?>"
+					     id="pb_attendee_4">
 						<?php if ( isset( $pb_reg_data->attendee_4 ) ) {
 							$names = preg_split( '/\s+/', $pb_reg_data->attendee_4 );
 						} ?>
@@ -471,7 +493,7 @@ class PB_Reg {
 							        id="pb_attendee_shirt_4"
 							        name="pb_attendee_shirt_size_4">
 								<?php $defSel = $pb_reg_data->attendee_shirt_size_4;;
-								echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+								//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 							</select>
 
 							<label class="pb_lbl_right attendee_club_lbl"
@@ -498,7 +520,8 @@ class PB_Reg {
 			</form>
 
 			<!-- Pirate's Ball CTXPHC Members Only Registration PayPal Button -->
-			<form class="<?php echo $this->pb_reg_classes[ 'pb_memb_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_memb_class' ]; ?>"
+			      action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="VDW65WDHYXXYJ">
@@ -507,50 +530,63 @@ class PB_Reg {
 				<input class="paypal_input" type="image"
 				       src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
 				       name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img class="paypal_button" alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+				<img class="paypal_button" alt="" border="0"
+				     src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
 				     width="1" height="1">
 			</form>
 
 
 			<!--  Pirate's Ball Early Registration PayPal Button -->
-			<form class="<?php echo $this->pb_reg_classes[ 'pb_early_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_early_class' ]; ?>"
+			      action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="4PH2DEAAH4LD8">
 				<input type="hidden" name="quantity" value="<?php echo $pb_reg_data->quantity; ?>"/>
 				<input type="hidden" name="custom" value="<?php echo $pb_reg_user_id; ?>"/>
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0"
+				<input type="image"
+				       src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
+				       border="0"
 				       name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img class="paypal_button" alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+				<img class="paypal_button" alt="" border="0"
+				     src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
 				     width="1" height="1">
 			</form>
 
 
 			<!-- Pirate's Ball Late Registration PayPal Button -->
 
-			<form class="<?php echo $this->pb_reg_classes[ 'pb_late_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_late_class' ]; ?>"
+			      action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="DU9MPK4H5L3ZQ">
 				<input type="hidden" name="quantity" value="<?php echo $pb_reg_data->quantity; ?>"/>
 				<input type="hidden" name="custom" value="<?php echo $pb_reg_user_id; ?>"/>
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0"
+				<input type="image"
+				       src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
+				       border="0"
 				       name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img class="paypal_button" alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+				<img class="paypal_button" alt="" border="0"
+				     src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
 				     width="1" height="1">
 			</form>
 
 			<!-- Pirate's Ball Private Registration PayPal Button -->
 
-			<form class="<?php echo $this->pb_reg_classes[ 'pb_priv_class' ]; ?>" action="https://www.paypal.com/cgi-bin/webscr" method="post"
+			<form class="<?php echo $this->pb_reg_classes[ 'pb_priv_class' ]; ?>"
+			      action="https://www.paypal.com/cgi-bin/webscr" method="post"
 			      target="_top">
 				<input type="hidden" name="cmd" value="_s-xclick">
 				<input type="hidden" name="hosted_button_id" value="5YCZ8AV3GT83S">
 				<input type="hidden" name="quantity" value="<?php echo $pb_reg_data->quantity; ?>"/>
 				<input type="hidden" name="custom" value="<?php echo $pb_reg_user_id; ?>"/>
-				<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif" border="0"
+				<input type="image"
+				       src="https://www.paypalobjects.com/en_US/i/btn/btn_paynowCC_LG.gif"
+				       border="0"
 				       name="submit" alt="PayPal - The safer, easier way to pay online!">
-				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif"
+				     width="1" height="1">
 			</form>
 
 		</div>
@@ -570,14 +606,17 @@ class PB_Reg {
 				<li><span class="pb_bold">Friday's</span> Welcome Aboard Party with <a
 						href="http://www.thedetentions.com/">The Detentions!</a>.
 				</li>
-				<li><span class="pb_bold">Saturday Afternoon's</span> Walk The Plank Pool Party with live music
+				<li><span class="pb_bold">Saturday Afternoon's</span> Walk The Plank Pool Party with
+					live music
 					by <a href="">TBA</a>.
 				</li>
 				<li><span class="pb_bold">Saturday Night's</span> Pirate's Ball with <a
-						href="http://donnybrewer.com/">Donny Brewer and The Dock Rockers</a> and two free drink
+						href="http://donnybrewer.com/">Donny Brewer and The Dock Rockers</a> and two
+					free drink
 					tickets!
 				</li>
-				<li><span class="pb_bold">Sunday's</span>: SUNDAY SEND OFF Music and Breakfast Tacos by the Pool!
+				<li><span class="pb_bold">Sunday's</span>: SUNDAY SEND OFF Music and Breakfast Tacos
+					by the Pool!
 				</li>
 			</ul>
 
@@ -585,8 +624,10 @@ class PB_Reg {
 		</div>
 
 		<div class="<?php echo $this->pb_reg_classes[ 'pb_memb_class' ]; ?>" id="memb_reg_cost">
-			<h4>CTXPHC Members only early registration cost: $<?php echo $this->pb_memb_cost; ?> per person</h4>
-			After June 30th Early Registration cost: $<?php echo $this->pb_early_cost; ?> per person.
+			<h4>CTXPHC Members only early registration cost: $<?php echo $this->pb_memb_cost; ?> per
+				person</h4>
+			After June 30th Early Registration cost: $<?php echo $this->pb_early_cost; ?> per
+			person.
 			After July 31st Registration cost: $<?php echo $this->pb_cost; ?> pre person.
 
 			<p class="pb_center">
@@ -698,17 +739,31 @@ class PB_Reg {
 						       type="text"
 						/>
 					</div>
+					<!--
 					<div class="pb_rows">
 						<label class="pb__shirt"
 						       id="pb_lbl_t-shirt"
-						       for="pb_t" -shirt>T-Shirt
+						       for="pb_t-shirt">T-Shirt
 							Size:</label>
 						<select class="validate[required] pb_input_left"
 						        id="pb_t-shirt"
 						        name="pb_shirt_size">
-							<?php $defSel = 'LG';
-							echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+							<?php //$defSel = 'LG';
+					//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 						</select>
+					</div>
+					-->
+					<div class="pb_rows">
+						<label class="pb_lbl_cruse"
+						       id="pb_cruise_lbl"
+						       for="pb_cruise">
+							Attending Captain's Castaway Cruise(<?php echo $pb_cruise_cost; ?>)
+						</label>
+						<input class="validate[required] pb_input_left"
+						       id="pb_cruise_checkbox"
+						       name="pb_cruise"
+						       type="checkbox"
+						>
 					</div>
 				</div>
 			</fieldset>
@@ -775,15 +830,28 @@ class PB_Reg {
 					</div>
 
 					<div class="pb_rows">
+						<!--
 						<label class="pb_lbl_left"
 						       id="pb_lbl_attendee_shirt_2"
 						       for="pb_attendee_shirt_2">T-Shirt Size:
 						</label>
-						<select class="validate[required] pb_input_left" id="pb_attendee_shirt_2"
+						<select class="validate[required] pb_attendee_shirt pb_input_left"
+						        id="pb_attendee_shirt_2"
 						        name="pb_attendee_shirt_size_2">
 							<?php $defSel = 'LG';
-							echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+						//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 						</select>
+					-->
+						<label class="pb_lbl_cruse"
+						       id="pb_attendee_2_cruise_lbl"
+						       for="pb_attendee_cruise_2">
+							Attending Captain's Castaway Cruise(<?php echo $pb_cruise_cost; ?>)
+						</label>
+						<input class="validate[required] pb_input_left"
+						       id="pb_attendee_cruise_checkbox_2"
+						       name="pb_attendee_cruise_2"
+						       type="checkbox"
+						>
 
 						<label class="pb_lbl_right attendee_club_lbl"
 						       id="pb_lbl_attendee_club_2"
@@ -824,6 +892,7 @@ class PB_Reg {
 					</div>
 
 					<div class="pb_rows">
+						<!--
 						<label class="pb_lbl_left"
 						       id="pb_lbl_attendee_shirt_3"
 						       for="pb_attendee_shirt_3">T-Shirt Size:
@@ -832,8 +901,19 @@ class PB_Reg {
 						        id="pb_attendee_shirt_3"
 						        name="pb_attendee_shirt_size_3">
 							<?php $defSel = 'LG';
-							echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+						//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 						</select>
+						-->
+						<label class="pb_lbl_cruse"
+						       id="pb_attendee_3_cruise_lbl"
+						       for="pb_attendee_cruise_3">
+							Attending Captain's Castaway Cruise(<?php echo $pb_cruise_cost; ?>)
+						</label>
+						<input class="validate[required] pb_input_left"
+						       id="pb_attendee_cruise_checkbox_3"
+						       name="pb_attendee_cruise_3"
+						       type="checkbox"
+						>
 						<label class="pb_lbl_right attendee_club_lbl"
 						       id="pb_lbl_attendee_club_3"
 						       for="pb_attendee_club_3">Club Affiliation:
@@ -872,6 +952,7 @@ class PB_Reg {
 					</div>
 
 					<div class="pb_rows">
+						<!--
 						<label class="pb_lbl_left"
 						       id="pb_lbl_attendee_shirt_4"
 						       for="pb_attendee_shirt_4">T-Shirt Size:
@@ -880,8 +961,19 @@ class PB_Reg {
 						        id="pb_attendee_shirt_4"
 						        name="pb_attendee_shirt_size_4">
 							<?php $defSel = 'LG';
-							echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
+							//echo showOptionsDrop( $this->pb_shirt_sizes, $defSel, true ); ?>
 						</select>
+						-->
+						<label class="pb_lbl_cruse"
+						       id="pb_attendee_4_cruise_lbl"
+						       for="pb_attendee_cruise_4">
+							Attending Captain's Castaway Cruise(<?php echo $pb_cruise_cost; ?>)
+						</label>
+						<input class="validate[required] pb_input_left"
+						       id="pb_attendee_cruise_checkbox_4"
+						       name="pb_attendee_cruise_4"
+						       type="checkbox"
+						>
 
 						<label class="pb_lbl_right attendee_club_lbl"
 						       id="pb_lbl_attendee_club_4"
@@ -898,7 +990,8 @@ class PB_Reg {
 			</fieldset>
 
 			<div id="pb_reg_submit">
-				<input class="ctxphc_button3" id="pb_submit" type=submit name="submit" value="submit"/>
+				<input class="ctxphc_button3" id="pb_submit" type=submit name="submit"
+				       value="submit"/>
 			</div>
 		</form>
 		<?php

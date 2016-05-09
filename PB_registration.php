@@ -9,15 +9,15 @@ global $defSel, $wpdb;
 $debug = 'true';
 $pbreg_data = array();
 
-$attendee_count = 0;
-$PB_reg_total = 0;
-$item_name = '';
-$item_num = '';
-$tAmount = '';
-$quantity = 0;
-$pb_cost = 65.00;
-$pbattend_count = 0;
-$state = 'TX';
+$attendee_count  = 0;
+$PB_reg_total    = 0;
+$item_name       = '';
+$item_num        = '';
+$tAmount         = '';
+$quantity        = 0;
+$pb_cost         = 65.00;
+$pb_attend_count = 0;
+$state           = 'TX';
 ?>
 
 <?php $states_arr = array('AL'=>"Alabama",'AK'=>"Alaska",'AZ'=>"Arizona",'AR'=>"Arkansas",'CA'=>"California",'CO'=>"Colorado",'CT'=>"Connecticut",'DE'=>"Delaware",'DC'=>"District Of Columbia",'FL'=>"Florida",'GA'=>"Georgia",'HI'=>"Hawaii",'ID'=>"Idaho",'IL'=>"Illinois",'IN'=>"Indiana",'IA'=>"Iowa",'KS'=>"Kansas",'KY'=>"Kentucky",'LA'=>"Louisiana",'ME'=>"Maine",'MD'=>"Maryland",'MA'=>"Massachusetts",'MI'=>"Michigan",'MN'=>"Minnesota",'MS'=>"Mississippi",'MO'=>"Missouri",'MT'=>"Montana",'NE'=>"Nebraska",'NV'=>"Nevada",'NH'=>"New Hampshire",'NJ'=>"New Jersey",'NM'=>"New Mexico",'NY'=>"New York",'NC'=>"North Carolina",'ND'=>"North Dakota",'OH'=>"Ohio",'OK'=>"Oklahoma",'OR'=>"Oregon",'PA'=>"Pennsylvania",'RI'=>"Rhode Island",'SC'=>"South Carolina",'SD'=>"South Dakota",'TN'=>"Tennessee",'TX'=>"Texas",'UT'=>"Utah",'VT'=>"Vermont",'VA'=>"Virginia",'WA'=>"Washington",'WV'=>"West Virginia",'WI'=>"Wisconsin",'WY'=>"Wyoming"); ?>
@@ -165,10 +165,10 @@ if (isset($_POST['submit'])){
                 $attendee_name = $value;
                 break;
             case ( strpos( $key, 'pb_attendee_lname' ) ):
-                $pbattend_count++;
+                $pb_attend_count++;
                 $attendee_name .= ' ' . $value;
                 //error_log( "The full attendee name key = $key and the value = $value.", 0 );
-                $pbkey = 'attendee_' . $pbattend_count;
+                $pbkey = 'attendee_' . $pb_attend_count;
                 $pbreg_data[$pbkey] = $attendee_name;
                 break;
         }

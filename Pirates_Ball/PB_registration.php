@@ -15,9 +15,10 @@ if ( ! class_exists( 'PB_Reg' ) ) {
 $args             = array();
 $args[ 'states' ] = get_states_array();
 
-$pb_cost       = 70.00;
-$pb_early_cost = 60.00;
-$pb_memb_cost  = 50.00;
+$pb_cost       = 65.00;
+$pb_early_cost = 55.00;
+$pb_memb_cost  = 45.00;
+$pb_cruse_cost = 40.00;
 
 $args[ 'pb_today' ]    = $pb_today = new DateTime();
 $args[ 'expiry' ]      = $expiry = new DateTime( "July 1, 2016 12:00:00" );
@@ -50,6 +51,8 @@ if ( $args[ 'pb_priv_reg' ] ) {
 	$args[ 'pb_priv_class' ]  = $pb_priv_class = 'pb_hidden';
 	$args[ 'pb_reg_cost' ]    = $pb_reg_cost = $pb_memb_cost;
 }
+
+$args[ 'pb_cruse_cost'] = $pb_cruse_cost;
 
 get_header(); ?>
 <!--suppress ALL -->

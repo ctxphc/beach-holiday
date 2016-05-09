@@ -1055,7 +1055,7 @@ fieldset {
 
 legend {
     position: absolute;
-    top: -2px;
+    top: -10px;
     background: #ffffff;
     padding: 10px 20px;
     border: 2px groove threedface;
@@ -1067,7 +1067,7 @@ legend {
 
 legend span {
     display: block;
-    margin: -20px;
+    margin: -10px;
     /* background: #e0e8ec; */
     padding: 0 20px;
 
@@ -1277,6 +1277,12 @@ p.ctxphc_em_event {
 
 table.em-tickets  {
     width: 60%;
+    border-spacing: 10px;
+    border-width: medium;
+    border-collapse: separate;
+}
+td.em-tickets {
+    padding: 10px;
 }
 
 .event p {
@@ -1298,11 +1304,12 @@ table.em-tickets  {
     background-color: ghostwhite;
 }
 
-.em-ticket tr {
+tr.em-ticket {
+    margin-top: 1.3em;
     margin-bottom: 1.3em;
 }
 
-.ctxphc_em_events .em-form-required span {
+span.em-form-required  {
     font-size: 1.5em;
     color: red;
 }
@@ -1315,11 +1322,16 @@ td.em-bookings-ticket-table-price {
     width: 65px;
 }
 
-#content .single_event_title .post_title a, #content .post_title a {
+#content .ctxphc_em_event .single_event_title .post_title a, #content .post_title a {
+    visibility: hidden;
     left: 11em;
     position: relative;
 }
 
-.ctxphc_em_cruise_includes {
+p + ul {
+    margin-top: -25px;
+}
 
+#content .em-booking-form-details input.input, .em-booking-form-details textarea {
+    width: 15em;
 }
